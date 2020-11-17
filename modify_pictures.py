@@ -1,6 +1,9 @@
 from PIL import Image
 import os
 
+__author__ = 'alf-arv'
+
+
 def remove_alpha_layer(img: Image) -> Image:
     """
     Function for removing transparency layer if there is one
@@ -15,12 +18,13 @@ def remove_alpha_layer(img: Image) -> Image:
     else:
         return img
 
+
 def transform_picture_to_bmp(image_path_in: str,
-                             image_path_out: str=False,
-                             width: int=False,
-                             height:int=False,
-                             scale:int='',
-                             use_original_dimensions: bool=False) -> Image:
+                             image_path_out: str = False,
+                             width: int = False,
+                             height: int = False,
+                             scale: int = '',
+                             use_original_dimensions: bool = False) -> Image:
     """
     Function for transforming the provided picture to bmp and saving it to
     the output path if provided. If not, the transformed image is saved in
@@ -51,13 +55,13 @@ def transform_picture_to_bmp(image_path_in: str,
             scale = 1
 
         # Resize
-        resizedImage = img.resize((int(scale)*int(width), int(scale)*int(height))) # change this resolution
+        resized_image = img.resize((int(scale) * int(width), int(scale) * int(height)))
 
         # Save image to disk
         if image_path_out:
-            resizedImage.save(os.path.join(image_path_out,
-                                           str('.'.join(image_path_in.split(".")[:-1])).split("/")[-1]+'_tr.bmp'))
+            resized_image.save(os.path.join(image_path_out,
+                                            str('.'.join(image_path_in.split(".")[:-1])).split("/")[-1] + '_tr.bmp'))
         else:
-            resizedImage.save(str('.'.join(image_path_in.split(".")[:-1]))+'_tr.bmp')
+            resized_image.save(str('.'.join(image_path_in.split(".")[:-1])) + '_tr.bmp')
         return True
     return False
