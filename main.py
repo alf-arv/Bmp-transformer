@@ -37,6 +37,7 @@ def main():
             window.FindElement('width_tb').Update(disabled = True)
             window.FindElement('width_tb').Update(value='')
             window.FindElement('height_tb').Update(disabled = True)
+            window.FindElement('height_tb').Update(value='')
 
         # Enable dimension inputs when checkbox inactive
         if (not values['orig_dim_checkbox']):
@@ -48,7 +49,10 @@ def main():
             # ... and original dimensions should not be used ...
             if not values['orig_dim_checkbox']:
                 # ... transform with specified dimensions
-                status = transform_picture_to_bmp(image_path_in=values['Choose file...'], width=values['width_tb'], height=values['height_tb'], scale=values['scale'])
+                status = transform_picture_to_bmp(image_path_in=values['Choose file...'],
+                                                  width=values['width_tb'],
+                                                  height=values['height_tb'],
+                                                  scale=values['scale'])
 
                 # Notify user
                 if status:
@@ -61,7 +65,9 @@ def main():
             # ... and original dimensions should be used ...
             if values['orig_dim_checkbox']:
                 # ... transform
-                status = transform_picture_to_bmp(image_path_in=values['Choose file...'], use_original_dimensions=True, scale=values['scale'])
+                status = transform_picture_to_bmp(image_path_in=values['Choose file...'],
+                                                  use_original_dimensions=True,
+                                                  scale=values['scale'])
 
                 # Notify user
                 if status:
