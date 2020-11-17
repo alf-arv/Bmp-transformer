@@ -11,15 +11,14 @@ def remove_alpha_layer(img: Image) -> Image:
         # prevent IOError: cannot write mode RGBA as BMP
         r, g, b, a = img.split()
         img = Image.merge("RGB", (r, g, b))
-        #img.save(file_out)
         return img
     else:
         return img
 
 def transform_picture_to_bmp(image_path_in: str,
                              image_path_out: str=False,
-                             width: int=100,
-                             height:int=100,
+                             width: int=False,
+                             height:int=False,
                              scale:int='',
                              use_original_dimensions: bool=False) -> Image:
     """
@@ -28,13 +27,21 @@ def transform_picture_to_bmp(image_path_in: str,
     the same path as the input.
 
     :param image_path_in: Path to the image to transform to bmp
-    :param image_path_out: Output path to save the transformed image to,
+    :param image_path_out: Output path to save the transformed image to
+    :param width: Specified width in pixels
+    :param height: Specified height in pixels
+    :param scale: Specified scale
+    :param use_original_dimensions: False if specified dimensions should be used, True otherwise
     :return: True if successful transform, False otherwise
     """
 
+    # Prevent misusage
+    if use_original_dimensions and (width or height):
+        return False
+
     if image_path_in:
         # Create an Image object
-        img = Image.open(image_path_in)
+        img = Image.open(remove_alpha_layer(image_path_in))
 
         if use_original_dimensions:
             width = img.width
@@ -48,7 +55,8 @@ def transform_picture_to_bmp(image_path_in: str,
 
         # Save image to disk
         if image_path_out:
-            resizedImage.save(os.path.join(image_path_out, 'pelican_modified.bmp'))
+            resizedImage.save(os.path.join(image_path_out,
+                                           str('.'.join(image_path_in.split(".")[:-1])).split("/")[-1]+'_tr.bmp'))
         else:
             resizedImage.save(str('.'.join(image_path_in.split(".")[:-1]))+'_tr.bmp')
         return True
