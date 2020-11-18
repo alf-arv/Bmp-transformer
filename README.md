@@ -16,7 +16,7 @@ This application takes all common file formats (jpeg, png, tif, jp2 and bmp amon
 
 ### Screenshot
 
-![Screenshot of main window](screenshot.png?raw=true "Screenshot of main window")
+![Screenshot of main window](Screenshot.png?raw=true "Screenshot of main window")
 
 ### Credits:
 
