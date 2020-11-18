@@ -23,7 +23,7 @@ def transform_picture_to_bmp(image_path_in: str,
                              image_path_out: str = False,
                              width: int = False,
                              height: int = False,
-                             scale: int = '',
+                             scale: float = '',
                              use_original_dimensions: bool = False) -> Image:
     """
     Function for transforming the provided picture to bmp and saving it to
@@ -55,7 +55,7 @@ def transform_picture_to_bmp(image_path_in: str,
             scale = 1
 
         # Resize
-        resized_image = img.resize((int(scale) * int(width), int(scale) * int(height)))
+        resized_image = img.resize((int(float(scale) * float(width)), int(float(scale) * float(height))))
 
         # Save image to disk
         if image_path_out:

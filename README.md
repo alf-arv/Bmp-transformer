@@ -10,6 +10,7 @@ Feel free to take inspiration from, modify or improve this small project to your
 2) Choose file with the button 'Choose file...'
 3) Check 'Use original dimensions' to do so, otherwise specify new dimensions using the available inputs. Rescaling can be done by inputting a float value in the scale input.
 4) Press 'Transform'
+5) The transformed picture is outputted in alongside the original with the ending *_tr*
 
 This application takes all common file formats (jpeg, png, tif, jp2 and bmp among others) and outputs a 3 layer bitmap image with bit depth 24.
 
